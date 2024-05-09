@@ -1,9 +1,11 @@
 import React from "react";
-import properties from "@/properties.json";
 import PropertyCard from "@/components/PropertyCard";
 import Link from "next/link";
+import { fetchProperties } from "@/utils/requests";
 
-const HomeProperties = () => {
+const HomeProperties = async () => {
+
+  const properties = await fetchProperties(); 
     
     /*
         从一个名为 `properties` 的数组中随机选择三个元素，并将它们存储在 `recentProperties` 变量中。
@@ -44,7 +46,7 @@ const HomeProperties = () => {
             {recentProperties === 0 ? (
               <p>No Properties Found</p>
             ) : (
-              recentProperties.map((property) => (
+              recentProperties.map((property: any) => (
                 <PropertyCard key={property._id} property={property} />
               ))
             )}
