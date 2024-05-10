@@ -25,7 +25,7 @@ const PropertyPage = () => {
 
   useEffect(() => {
     const fetchPropertyData = async () => {
-      if (!id) return; // 如果 id 不存在，则直接返回
+      if (!propertyId) return; // 如果 id 不存在，则直接返回
 
       try {
         const property = await fetchProperty(propertyId);
@@ -40,7 +40,7 @@ const PropertyPage = () => {
     if (property === null) {
       fetchPropertyData(); // 重新尝试获取数据
     }
-  }, [id, property]);
+  }, [propertyId, property]);
 
   if (!property && !loading) {
     return (
