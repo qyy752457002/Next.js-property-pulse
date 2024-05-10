@@ -13,6 +13,9 @@ const PropertyPage = () => {
   // 当前URL 为 /properties/:id，所以 "useParams" 返回一个对象，其中包含一个名为 "id" 的属性，其值为 URL 中动态参数的值。
   const { id } = useParams();
 
+  // Use parseInt with a radix of 10 to ensure proper conversion
+  const propertyId = parseInt(id as string, 10);
+
   // 在 React 中，useState 是一个泛型函数，它可以接受一个类型参数，用于指定状态的类型。
 
   // 在这个例子中，useState<any>(null) 意味着状态 property 的类型是任意的，它可以是任何类型，包括 null
@@ -25,7 +28,7 @@ const PropertyPage = () => {
       if (!id) return; // 如果 id 不存在，则直接返回
 
       try {
-        const property = await fetchProperty(id);
+        const property = await fetchProperty(propertyId);
         setProperty(property);
       } catch (error) {
         console.error("Error fetching property:", error); // 处理错误
