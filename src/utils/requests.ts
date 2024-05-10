@@ -23,7 +23,7 @@ async function fetchProperties() {
 }
 
 // Fetch single property
-async function fetchProperty(id: number) {
+async function fetchProperty(id: string) {
   try {
     // Handle the case where the domain is not available yet
     if (!apiDomain) {

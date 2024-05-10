@@ -14,7 +14,7 @@ const PropertyPage = () => {
   const { id } = useParams();
 
   // Use parseInt with a radix of 10 to ensure proper conversion
-  const propertyId = parseInt(id as string, 10);
+  // const propertyId = parseInt(id as string, 10);
 
   // 在 React 中，useState 是一个泛型函数，它可以接受一个类型参数，用于指定状态的类型。
 
@@ -25,10 +25,10 @@ const PropertyPage = () => {
 
   useEffect(() => {
     const fetchPropertyData = async () => {
-      if (!propertyId) return; // 如果 id 不存在，则直接返回
+      if (!id) return; // 如果 id 不存在，则直接返回
 
       try {
-        const property = await fetchProperty(propertyId);
+        const property = await fetchProperty(id as string);
         setProperty(property);
       } catch (error) {
         console.error("Error fetching property:", error); // 处理错误
@@ -40,7 +40,7 @@ const PropertyPage = () => {
     if (property === null) {
       fetchPropertyData(); // 重新尝试获取数据
     }
-  }, [propertyId, property]);
+  }, [id, property]);
 
   if (!property && !loading) {
     return (
